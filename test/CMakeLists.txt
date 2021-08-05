@@ -14,7 +14,7 @@ project(asm-test CXX)
 
 add_executable("asm-all-tests" test.cpp)
 
-target_link_libraries("asm-all-tests" PRIVATE gtest_main)
+target_link_libraries("asm-all-tests" PRIVATE asm gtest_main)
 target_compile_features("asm-all-tests" PRIVATE cxx_std_17)
 
-add_test(NAME "asm-all-tests" COMMAND asm-all-tests)
+add_test(NAME "all-tests" COMMAND asm-all-tests)

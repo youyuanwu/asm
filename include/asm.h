@@ -1,2 +1,3 @@
+#include <functional>
 
-void test();
+void saveAndRun(std::function<void(void)> f);

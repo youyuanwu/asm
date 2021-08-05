@@ -10,7 +10,10 @@ project(asm CXX)
 #     "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>"
 # )
 
-add_subdirectory(src)
+include_directories(${asm_SOURCE_DIR}/include)
+add_library(asm ${asm_SOURCE_DIR}/src/asm.cpp)
+
+#add_subdirectory(src)
 
 enable_testing()
 add_subdirectory(test)
