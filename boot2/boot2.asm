@@ -70,17 +70,17 @@ bits 32
 	hello: db "Hello from beyond 512 Bytes!!",0
 boot2:
 	mov esi,hello
-	mov ebx,0xb8000
+	mov ebx,0xb8000 ; vga text buff location
 .loop:
 	lodsb
 	or al,al
 	jz halt
 	or eax,0x0F00
-	mov word [ebx], ax
-	add ebx,2
+	mov word [ebx], ax ; write char/short into buffer
+	add ebx,2 ; vga text is short (2bytes). move to the next short.
 	jmp .loop
 halt:
-	mov esp,kernel_stack_top
+	mov esp,kernel_stack_top ; setup kernel stack and enter into kernal
 	extern kmain
 	call kmain
 	cli
@@ -89,5 +89,5 @@ halt:
 section .bss
 align 4
 kernel_stack_bottom: equ $
-	resb 16384 ; 16 KB
+	resb 16384 ; 16 KB uninitialized data.
 kernel_stack_top:
